@@ -26,7 +26,11 @@ export default function Home() {
         gap-3
         mt-4
         ">
-          <ListItem/>
+          <ListItem
+            image="/images/liked.png"
+            name="Liked Songs"
+            href="liked"
+          />
         </div>
       </Header>
     </div>
