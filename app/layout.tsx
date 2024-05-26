@@ -24,7 +24,7 @@ export default function RootLayout({
           <UserProvider>
             <Sidebar>
               {children}
-              </Sidebar>
+            </Sidebar>
           </UserProvider>
         </SupabaseProvider>
       </body>
