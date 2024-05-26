@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Modal from "@/components/Modal";
+import AuthModal from "@/components/AuthModal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -13,14 +13,7 @@ const ModalProvider = () => {
   if(!isMounted) return null;
   return (
     <>
-      <Modal
-        title="tet"
-        description="hhkjf"
-        isOpen
-        onChange={() =>{}}
-      >
-        hy hh
-      </Modal>
+      <AuthModal />
     </>
   )
 }
