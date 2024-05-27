@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 // Function to sanitize the title
 const sanitizeTitle = (title: string) => {
-  return title.replace(/[^a-zA-Z0-9-_]/g, ""); // Remove or replace special characters
+  return title.replace(/[^a-zA-Z0-9-_]/g, "");
 };
 
 const UploadModal = () => {
