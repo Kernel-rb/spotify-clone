@@ -7,6 +7,9 @@ import LikeButton from "./LikeButton";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import Slider from "./Slider";
+import usePlayer from "@/hooks/usePlayer";
+import { useState } from "react";
 
 interface PlayerContentProps {
   song: Song;
@@ -14,8 +17,29 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
-    const Icon = true ? BsPauseFill : BsPlayFill;
-    const VolumeIcon = true ? HiSpeakerXMark : HiSpeakerWave ;
+  const player = usePlayer();
+  const [volume, setVolume] = useState(1);
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const Icon = isPlaying ? BsPauseFill : BsPlayFill;
+  const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
+  
+  const onPlayNext = () => {
+    if (player.ids.length === 0) return;
+    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
+    const nextSong = player.ids[currentIndex + 1];  
+    if (!nextSong) return player.setId(player.ids[0]);
+    
+    player.setId(nextSong);
+  }
+  const onPlayPrevious = () => {
+    if (player.ids.length === 0) return;
+    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
+    const previousSong = player.ids[currentIndex - 1];  
+    if (!previousSong) return player.setId(player.ids[player.ids.length - 1]);
+    
+    player.setId(previousSong);
+  }
   return (
     <div
       className="
@@ -69,8 +93,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         >
           <Icon size={30} className="text-black" />
         </div>
-          </div>
-          <div className="
+      </div>
+      <div
+        className="
           hidden
           h-full
           md:flex
@@ -80,19 +105,20 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
             max-w-[722px]
             gap-x-6
           "
-          >
-              <AiFillStepBackward
-                  onClick={()=> {}}
-                  size={30}
-                  className="
+      >
+        <AiFillStepBackward
+          onClick={() => {}}
+          size={30}
+          className="
               text-neutral-400
               cursor-pointer
               hover:text-white
               transition
-           " />   
-              <div
-                  onClick={() => { }}
-                  className="
+           "
+        />
+        <div
+          onClick={() => {}}
+          className="
                   flex
                     items-center
                     justify-center
@@ -103,43 +129,42 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
                     p-1
                     cursor-pointer
                   "
-              >
-                  <Icon size={30} className="text-black" />
-                  </div>
-                  <AiFillStepForward 
-                      onClick={() => { }}
-                      size={30}
-                      className="
+        >
+          <Icon size={30} className="text-black" />
+        </div>
+        <AiFillStepForward
+          onClick={onPlayNext}
+          size={30}
+          className="
                       text-neutral-400
                       cursor-pointer
                         hover:text-white
                         transition
                       "
-                  />
-          </div>
-          <div className="
+        />
+      </div>
+      <div
+        className="
           hidden
           md:flex
             w-full
             justify-end
             pr-2
-          ">
-              <div className="
+          "
+      >
+        <div
+          className="
               flex
                 items-center
                 gap-x-2
                 w-[120px]
-              ">
-                  <VolumeIcon 
-                      onClick={() => { }}
-                      className="cursor-pointer"
-                        size={34}
-                  />
-                  <Slider />
-              </div>
-          </div>
-
-          </div>
+              "
+        >
+          <VolumeIcon onClick={() => {}} className="cursor-pointer" size={34} />
+          <Slider />
+        </div>
+      </div>
+    </div>
   );
 };
 
