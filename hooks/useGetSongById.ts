@@ -1,7 +1,7 @@
 import {  useEffect, useMemo, useState } from 'react';
 import { useSessionContext } from '@supabase/auth-helpers-react';
 import { Song } from '@/types';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 
 
 
@@ -19,7 +19,7 @@ const useGetSongById = (id?: string) => {
                 .single();
             if (error) {
                 setIsloading(false);
-                return toast.error(error.message);
+                 console.log(error.message);
             }
             setSong(data as Song);
             setIsloading(false);
