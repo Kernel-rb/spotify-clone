@@ -107,7 +107,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
           "
       >
         <AiFillStepBackward
-          onClick={() => {}}
+          onClick={onPlayPrevious}
           size={30}
           className="
               text-neutral-400
