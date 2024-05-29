@@ -59,7 +59,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   useEffect(() => {
     sound?.play();
     return () => {
-      sound?.upload();
+      sound?.unload();
     };
   }, [sound]);
 

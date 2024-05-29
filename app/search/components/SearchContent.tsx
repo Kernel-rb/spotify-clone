@@ -27,13 +27,14 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
             No songs found
           </div>
         );
-    }
+  }
     return (
       <div className="flex flex-col gap-y-2  w-full px-6 ">
         {songs.map((song) => (
           <div key={song.id} className="flex flex-col gap-y-2 w-full px-6">
                 <div className="flex-1">
-                    <MediaItem
+              <MediaItem
+                // onClick={(id: string) => onPlay(id)}
                         data={song}
                     />
             </div>
