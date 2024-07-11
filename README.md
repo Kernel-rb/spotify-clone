@@ -24,3 +24,6 @@ To get started with this project, follow these steps:
 7. Run the development server using `npm run dev`.
 8. Open your browser and navigate to `http://localhost:3000` to view the application.
 
+
+## TODO  : 
+[] CROSS ORIGIN BUG :)
